@@ -4,19 +4,21 @@ const app = express();
 const Listing = require("./Model/listing.js");
 const path = require("path");
 const methodOverride = require('method-override')
+const ejsMate = require('ejs-mate')
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
+app.engine("ejs",ejsMate);
 
 // Connecting to database wanderlust in mongodb
 async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
 }
 main()
-  .then((res) => {
+  .then((res) => { 
     console.log("Connected to mongodb successfully.");
   })
   .catch((err) => {
