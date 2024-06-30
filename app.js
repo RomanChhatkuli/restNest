@@ -9,6 +9,7 @@ const ejsMate = require('ejs-mate')
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
 app.engine("ejs",ejsMate); 
@@ -62,7 +63,7 @@ app.put("/listings/:id",async (req,res)=>{
     console.log(res)
   })
   res.redirect(`/listings/${id}`)
-})  
+})    
 
 // Delete Route 
 app.delete("/listings/:id/delete",async (req,res)=>{
