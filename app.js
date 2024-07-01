@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
 app.engine("ejs",ejsMate); 
 
-// Connecting to database wanderlust in mongodb
+// Connecting to database
 async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
 }

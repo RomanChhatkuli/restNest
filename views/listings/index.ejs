@@ -1,7 +1,23 @@
 <% layout('/layouts/boilerplate') -%>
 <body>
-    <h1>All Listings</h1>
+  <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
     <% for(listing of allListing){ %>
-        <li><a href="/listings/<%= listing._id %>"><%= listing.title %></a></li>
+    <a href="/listings/<%= listing._id %>">
+      <div class="card col" style="width: 20rem">
+        <img
+          src="<%= listing.image %>"
+          class="card-img-top"
+          alt="listing-img"
+        />
+        <div class="card-img-overlay"></div>
+        <div class="card-body">
+          <p class="card-text">
+            <b><%= listing.title %></b> <br />
+            Rs.<%= listing.price %>
+          </p>
+        </div>
+      </div>
+    </a>
     <% } %>
+  </div>
 </body>
