@@ -11,6 +11,9 @@ body{
     flex:1;
 }
 /* Footer  */
+footer{
+    background-color: #c3bfbf;
+}
 .f-info{
     display: flex;
     flex-direction: column;
@@ -18,7 +21,8 @@ body{
     justify-content: center;
     align-items: center;
     gap: 6px;
-    margin-top: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .f-info-social i{
     font-size: 22px;
@@ -53,4 +57,20 @@ body{
 .card-img-overlay:hover{
     opacity: 0.2;
     background-color: #ffffff;
+}
+
+/* Show page  */
+.btns{
+    display: flex;
+}
+.show-card{
+    border: none !important;
+}
+.show-card .card-body{
+    padding: 0 !important;
+    margin-bottom: 1rem;
+}
+.show-card a{
+    text-decoration: none;
+    color: black;
 }

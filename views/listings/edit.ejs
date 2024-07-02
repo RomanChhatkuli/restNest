@@ -1,6 +1,6 @@
 <% layout('/layouts/boilerplate') -%>
 <body>
-  <div class="row">
+  <div class="row mb-5">
     <div class="col-8 offset-2">
       <form action="/listings/<%= listing._id %>?_method=PUT" method="post">
         <h1 class="mt-4">Edit Your Listing</h1>
@@ -73,7 +73,7 @@
             value="<%= listing.location %>"
           />
         </div>
-        <button class="btn btn-danger">Edit</button>
+        <button class="btn btn-danger ">Edit</button>
       </form>
     </div>
   </div>
