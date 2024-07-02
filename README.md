@@ -22,8 +22,8 @@ Welcome to restNest, your ultimate destination for finding cozy accommodations a
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Templating Engine**: EJS (Embedded JavaScript)
-- **Payment Integration**: Stripe API
-- **Deployment**: AWS (Amazon Web Services)
+- **Payment Integration**: 
+- **Deployment**: 
 
 ---
 
@@ -39,5 +39,5 @@ Welcome to restNest, your ultimate destination for finding cozy accommodations a
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/restNest.git
+   git clone https://github.com/RomanChhatkuli/restNest.git
    cd restNest
