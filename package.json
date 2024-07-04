@@ -1,5 +1,13 @@
 {
-  "name": "hotel",
+  "name": "@roman-chhatkuli/rest-nest",
+  "keywords": [
+    "hotel",
+    "booking",
+    "website",
+    "restNest",
+    "vacation",
+    "travel"
+  ],
   "version": "1.0.0",
   "description": "Simple Hotel Booking Website",
   "main": "app.js",
@@ -8,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RomanChhatkuli/Hotel.git"
+    "url": "https://github.com/RomanChhatkuli/restNest.git"
   },
   "author": "Roman Chhatkuli",
   "license": "ISC",
