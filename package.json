@@ -18,7 +18,7 @@
     "type": "git",
     "url": "https://github.com/RomanChhatkuli/restNest.git"
   },
-  "author": "Roman Chhatkuli",
+  "author": "Roman",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.10",
