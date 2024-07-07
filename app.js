@@ -16,7 +16,7 @@ app.engine("ejs",ejsMate);
 
 // Connecting to database
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
+  await mongoose.connect("mongodb://127.0.0.1:27017/restNest");
 }
 main()
   .then((res) => { 
