@@ -40,4 +40,3 @@ Welcome to restNest, your ultimate destination for finding cozy accommodations a
 
    ```bash
    git clone https://github.com/RomanChhatkuli/restNest.git
-   cd restNest
