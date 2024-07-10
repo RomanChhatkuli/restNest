@@ -19,11 +19,11 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 
 // Connecting to database
-const MONGO_URL = "mongodb://127.0.0.1:27017/restNest"
+// const MONGO_URL = "mongodb://127.0.0.1:27017/restNest"
 const dbUrl = process.env.ATLASDB_URL
 console.log(dbUrl)
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(dbUrl);
 }
 main()
   .then((res) => {
