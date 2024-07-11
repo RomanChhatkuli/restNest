@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Listing = require("../Model/listing.js");
 const initData =  require('./data.js')
 require('dotenv').config()
-const dbUrl = process.env.ATLASDB_URL
 
+const dbUrl = process.env.ATLASDB_URL
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/restNest");
+  await mongoose.connect(dbUrl);
 }
 main()
   .then((res) => {
