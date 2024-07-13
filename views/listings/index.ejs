@@ -13,7 +13,7 @@
         <div class="card-body">
           <p class="card-text">
             <b><%= listing.title %></b> <br />
-            Rs.<%= listing.price %> <br>
+            Rs. <%= listing.price.toLocaleString("en-NP") %><br>
             <%= listing.location %>, <%= listing.country %>
           </p>
         </div>
