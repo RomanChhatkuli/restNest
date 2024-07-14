@@ -38,7 +38,7 @@ footer {
 
 /* Card */
 .card {
-  border: none;
+  border: none !important;
   margin-top: 2rem;
 }
 .card-body {
@@ -96,7 +96,7 @@ footer {
 /* review form  */
 .review {
   padding: 10px;
-  background-color: #cfdee6;
+  background-color: #bcbec0;
   border-radius: 15px;
 }
 
