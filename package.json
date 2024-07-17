@@ -22,7 +22,7 @@
     "type": "git",
     "url": "https://github.com/RomanChhatkuli/restNest.git"
   },
-  "author": "Roman",
+  "author": "Roman Chhatkuli",
   "license": "ISC",
   "dependencies": {
     "connect-flash": "^0.1.1",
