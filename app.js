@@ -6,9 +6,20 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const expressError = require("./utils/expressError.js");
-
+const session = require("express-session");
+const flash = require("connect-flash");
 const listings = require("./routes/lisiting.js");
 const reviews = require("./routes/review.js");
+const sessionOption = {
+  secret: "mySecretCode",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 7*24*60*60*1000,
+    maxAge: 7*24*60*60*1000,
+    httpOnly: true
+  }
+}
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -17,10 +28,12 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
+app.use(flash());
+app.use(session(sessionOption));
 
 // Connecting to database
 // const dbUrl = "mongodb://127.0.0.1:27017/restNest";
-const dbUrl = process.env.ATLASDB_URL
+const dbUrl = process.env.ATLASDB_URL;
 async function main() {
   await mongoose.connect(dbUrl);
 }
