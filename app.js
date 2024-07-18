@@ -28,6 +28,7 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
+
 app.use(flash());
 app.use(session(sessionOption));
 
@@ -44,6 +45,13 @@ main()
   .catch((err) => {
     console.log(err);
   });
+
+  app.use((req,res,next)=>{
+    res.locals.success = req.flash("success")
+    res.locals.error = req.flash("error")
+    next()
+  })
+
 
 // Root route
 app.get("/", (req, res) => {
