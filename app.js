@@ -8,8 +8,13 @@ const ejsMate = require("ejs-mate");
 const expressError = require("./utils/expressError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
-const listings = require("./routes/lisiting.js");
-const reviews = require("./routes/review.js");
+const listingRouter = require("./routes/lisiting.js");
+const reviewRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
+const passport = require("passport")
+const LocalStrategy = require("passport-local")
+const User = require("./Model/user.js")
+
 const sessionOption = {
   secret: "mySecretCode",
   resave: false,
@@ -31,10 +36,15 @@ app.engine("ejs", ejsMate);
 
 app.use(flash());
 app.use(session(sessionOption));
+app.use(passport.initialize()); 
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser()); 
+passport.deserializeUser(User.deserializeUser());
 
 // Connecting to database
-// const dbUrl = "mongodb://127.0.0.1:27017/restNest";
-const dbUrl = process.env.ATLASDB_URL;
+const dbUrl = "mongodb://127.0.0.1:27017/restNest";
+// const dbUrl = process.env.ATLASDB_URL;
 async function main() {
   await mongoose.connect(dbUrl);
 }
@@ -52,15 +62,15 @@ main()
     next()
   })
 
-
 // Root route
 app.get("/", (req, res) => {
   res.redirect("/listings");
 });
 
 // Middleware for handeling routes
-app.use("/listings", listings);
-app.use("/listings/:id/reviews", reviews);
+app.use("/listings", listingRouter);
+app.use("/listings/:id/reviews", reviewRouter);
+app.use("/", userRouter);
 
 // Handeling invalid route
 app.all("*", (req, res, next) => {
