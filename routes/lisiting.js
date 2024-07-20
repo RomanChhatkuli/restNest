@@ -24,7 +24,7 @@ router.get(
   })
 );
 
-// Create Route
+// Create new listing Route
 router.get("/new", (req, res) => {
   res.render("listings/new.ejs");
 });
@@ -40,7 +40,7 @@ router.post(
   })
 );
 
-// Edit Route
+// Edit listing Route
 router.get(
   "/:id/edit",
   wrapAsync(async (req, res) => {
@@ -68,7 +68,7 @@ router.put(
   })
 );
 
-// show route
+// show listing route
 router.get(
   "/:id",
   wrapAsync(async (req, res) => {
@@ -82,7 +82,7 @@ router.get(
   })
 );
 
-// Delete Route
+// Delete listing Route
 router.delete(
   "/:id/delete",
   wrapAsync(async (req, res) => {
