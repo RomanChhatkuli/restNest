@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Listing = require("../Model/listing.js");
+
+
 const initData =  require('./data.js')
 require('dotenv').config()
 
@@ -17,7 +19,13 @@ main()
 
 const initDB = async ()=>{
    await Listing.deleteMany({})
-   await Listing.insertMany(initData.data)
+   const updatedData = initData.data.map((obj) => ({
+    ...obj,
+    owner: '669d05121c929dbd38ccbf89'  // Assuming this is the correct owner ObjectId
+  }));
+
+  // Insert the updated data into the database
+  await Listing.insertMany(updatedData);
 }
 
 initDB();

@@ -43,8 +43,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Connecting to database
-// const dbUrl = "mongodb://127.0.0.1:27017/restNest";
-const dbUrl = process.env.ATLASDB_URL;
+const dbUrl = "mongodb://127.0.0.1:27017/restNest";
+// const dbUrl = process.env.ATLASDB_URL;
 async function main() {
   await mongoose.connect(dbUrl);
 }
@@ -59,6 +59,7 @@ main()
   app.use((req,res,next)=>{
     res.locals.success = req.flash("success")
     res.locals.error = req.flash("error")
+    res.locals.userInfo = req.user
     next()
   })
 

@@ -58,10 +58,21 @@
               <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRTIFCbZa_AyogJ4j9BGwr9rso_Db1_lbe4z3KlkDlf22ByWJmN" alt="userImage" height="30px">
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="/login">Login</a></li>
-              <li><a class="dropdown-item" href="/signup">SignUp</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="/listings/new">Rent You Home</a></li>
+              
+              <% if(!userInfo){ %>
+                <li><a class="dropdown-item" href="/login">Login</a></li>
+                <li><a class="dropdown-item" href="/signup">SignUp</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="/listings/new">Rent You Home</a></li>
+                <li><a class="dropdown-item" href="#">Help Centre</a></li>            
+                <% } else { %>
+                  <li><a class="dropdown-item" href="#">Account</a></li>
+                  <li><a class="dropdown-item" href="/listings/new">Rent You Home</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Help Centre</a></li>
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                  <% } %>
+                  
             </ul>
           </li>
         </ul>
