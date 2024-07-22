@@ -9,13 +9,18 @@
           style="height: 30rem" />
         <div class="card-body">
           <p class="card-text">
+            Owner: <%= listing.owner.username %>
+          </p>
+          <p class="card-text">
             <%= listing.description %> <br />
               Rs. <%= listing.price.toLocaleString("en-NP") %> <br />
                 <%= listing.location %>, <%= listing.country %> <br />
           </p>
         </div>
 
-        <% if(userInfo.id.equals(listing.owner)){ %>
+
+
+        <% if(userInfo && userInfo._id.equals(listing.owner._id)){ %>
         <div class="btns">
           <button class="btn btn-primary">
             <a href="/listings/<%= listing.id %>/edit">Edit</a>
@@ -39,6 +44,8 @@
         </div>
         <% } %>
 
+
+        <% if(userInfo) { %>
         <div class="review mb-5 mt-5">
           <h3>Leave a Review.</h3>
           <form action="/listings/<%= listing.id %>/reviews" method="post" novalidate class="needs-validation">
@@ -59,6 +66,8 @@
           </form>
         </div>
 
+      <% } %>
+
         <div class="row">
           <% if(listing.reviews.length){ %>
             <h4>All Reviews:</h4>
@@ -66,7 +75,7 @@
               <% for (review of listing.reviews) { %>
                 <div class="card col-5 ms-2 mb-4 review-card">
                   <div class="card-body">
-                    <h5 class="card-title">Username</h5>
+                    <h5 class="card-title"> @<%= review.author.username %> </h5>
                     <p class="card-text">
                       <%= review.comment %>
                     </p>
@@ -76,18 +85,7 @@
 
                     <form action="/listings/<%= listing.id %>/reviews/<%= review.id %>?_method=DELETE" method="post"
                       class="deleteForm">
-                      <div id="liveAlertPlaceholder-reviewDelete">
-                        <div class="alert alert-danger alert-dismissible" role="alert">
-                          <div>Confirm Review Delete!</div>
-                          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">
-                            Confirm Delete
-                          </button>
-                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                      </div>
-                      <button type="button" class="btn btn-primary" id="liveAlertBtn">
-                        Delete Review
-                      </button>
+                      <button class="btn btn-outline-danger ">Delete</button>
                     </form>
 
 

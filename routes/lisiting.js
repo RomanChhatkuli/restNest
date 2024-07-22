@@ -1,20 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
-const expressError = require("../utils/expressError.js");
-const { listingSchema } = require("../schema.js");
 const Listing = require("../Model/listing.js");
-const { isLoggedIn } = require("../middleware.js")
+const { isLoggedIn, isOwner, validateListing } = require("../middleware.js")
 
-// Validation of lisitng error handeling middleware
-const validateListing = (req, res, next) => {
-  let { error } = listingSchema.validate(req.body);
-  if (error) {
-    throw new expressError(400, error);
-  } else {
-    next();
-  }
-};
+
 
 // index route
 router.get(
@@ -48,6 +38,7 @@ router.post(
 router.get(
   "/:id/edit",
   isLoggedIn, 
+  isOwner,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
@@ -61,12 +52,12 @@ router.get(
 
 router.put(
   "/:id",
-  isLoggedIn, 
+  isLoggedIn,
+  isOwner, 
   validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    let listing = req.body;
-    await Listing.findByIdAndUpdate(id, listing, { new: true }).then((res) => {
+    await Listing.findByIdAndUpdate(id, req.body, { new: true }).then((res) => {
       console.log(res);
     });
     req.flash("success","Listing Edited Successfully.")
@@ -78,8 +69,8 @@ router.put(
 router.get(
   "/:id",
   wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    const listing = await Listing.findById(id).populate("reviews").populate("owner");
+    let { id } = req.params; 
+    const listing = await Listing.findById(id).populate({ path: "reviews", populate: { path: "author" } }).populate("owner");
     if(!listing){
       req.flash("error","Listing not found!")
       res.redirect("/listings")
@@ -92,6 +83,7 @@ router.get(
 router.delete(
   "/:id/delete",
   isLoggedIn, 
+  isOwner,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     await Listing.findByIdAndDelete(id).then((res) => {

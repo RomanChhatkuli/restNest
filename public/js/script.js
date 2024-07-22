@@ -21,20 +21,6 @@
   });
 })();
 
-// alert for delete button in reviews
-const alertPlaceholder = document.getElementById("liveAlertPlaceholder-reviewDelete");
-const alertTrigger = document.getElementById("liveAlertBtn");
-if (alertTrigger) {
-  alertTrigger.addEventListener("click", () => {
-    alertPlaceholder.style.display = "block";
-    if (alertPlaceholder.style.display = "block") {
-      document.getElementById("confirmDeleteBtn").addEventListener("click", () => {
-          document.querySelector(".deleteForm").submit();
-        });
-    }
-  });
-}
-
 
 // alert for delete button in listing in show.ejs
 const alertListingPlaceholder = document.getElementById("liveAlertPlaceholder-listing");
