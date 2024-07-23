@@ -24,8 +24,10 @@ footer {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.f-info-social i {
-  font-size: 22px;
+.f-info-social  {
+  transform: scale(0.8);
+  margin-left: -10px;
+  margin-bottom: -20px;
   cursor: pointer;
 }
 .f-info-links a {
@@ -94,12 +96,6 @@ footer {
 }
 
 /* review form  */
-.review {
-  padding: 10px;
-  background-color: #bcbec0;
-  border-radius: 15px;
-}
-
 #liveAlertPlaceholder-reviewDelete{
   display: none;
 }
@@ -109,4 +105,27 @@ footer {
   width: 40rem;
   left: -5px;
   top: 600px;
+}
+.starability-result{
+  transform: scale(0.5);
+}
+
+.rating-and-date {
+  display: flex;
+  align-items: center;
+}
+
+.starability-result {
+  margin: 0;
+  position: relative;
+  left: -30px;
+  top: -10px;
+  margin-right: -50px;
+}
+.profile-pic{
+  width: 30px;
+}
+.review-date {
+  font-size: 13px; 
+  color: #888; 
 }

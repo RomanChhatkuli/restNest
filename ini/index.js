@@ -5,9 +5,10 @@ const Listing = require("../Model/listing.js");
 const initData =  require('./data.js')
 require('dotenv').config()
 
-// const dbUrl = process.env.ATLASDB_URL
+
+// const dbUrl = "mongodb://127.0.0.1:27017/restNest";
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/restNest");
+  await mongoose.connect("mongodb+srv://romanchhatkuli09:romanchhatkuli%407@cluster0.cvi4pgz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 }
 main()
   .then((res) => {
@@ -21,7 +22,8 @@ const initDB = async ()=>{
    await Listing.deleteMany({})
    const updatedData = initData.data.map((obj) => ({
     ...obj,
-    owner: '669d05121c929dbd38ccbf89'  // Assuming this is the correct owner ObjectId
+    owner: '669e5cc28b21e00908bdb937'  // mongoatlas
+    // owner: '669d05121c929dbd38ccbf89'  // local
   }));
 
   // Insert the updated data into the database
