@@ -3,7 +3,7 @@
   <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 mb-5">
     <% for(listing of allListing){ %>
     <a href="/listings/<%= listing._id %>">
-      <div class="card col" style="width: 20rem">
+      <div class="card col index-card" style="width: 20rem">
         <img
           src="<%= listing.image.url %>"
           class="card-img-top"

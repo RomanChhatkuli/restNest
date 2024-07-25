@@ -22,20 +22,6 @@
 })();
 
 
-// alert for delete button in listing in show.ejs
-const alertListingPlaceholder = document.getElementById("liveAlertPlaceholder-listing");
-const alertListingTrigger = document.getElementById("liveAlertBtn-listing");
-if (alertListingTrigger) {
-  alertListingTrigger.addEventListener("click", () => {
-    alertListingPlaceholder.style.display = "block";
-    if (alertListingPlaceholder.style.display = "block") {
-      document.getElementById("confirmDeleteBtn-listing").addEventListener("click", () => {
-          document.querySelector(".DeleteForm-listing").submit();
-        });
-    }
-  });
-}
-
 // toggle eye button in passport of login and signup form 
 const eyeBtn = document.querySelector(".eyeBtn")
 const password = document.querySelector("#password")

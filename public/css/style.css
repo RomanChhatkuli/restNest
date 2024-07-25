@@ -24,7 +24,7 @@ footer {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.f-info-social  {
+.f-info-social {
   transform: scale(0.8);
   margin-left: -10px;
   margin-bottom: -20px;
@@ -78,35 +78,51 @@ footer {
 }
 
 @media (max-width: 600px) {
-    
-    .show-page-card {
-        width: 20rem;
-        position: relative;
-        right: -15px;
-    }
-    .show-page-card img {
-      height: 330px !important;
+  .show-page-card {
+    width: 22rem;
+    margin-left: 5px;
+  }
+  .show-page-card img {
+    height: 330px !important;
     margin-bottom: 15px;
   }
-  .alert-container{
-    width: 20rem !important;
-    top: 450px !important;
+  .index-card img {
+    width: 23rem;
   }
 
+  .review-card {
+    width: 15rem !important;
+  }
+  #profile-pic {
+    height: 35px !important;
+    margin-top: 5px;
+  }
+
+  .signup-form {
+    margin-left: -110px !important;
+    width: 390px !important;
+  }
+  .eyeBtn {
+    margin-right: 15px !important;
+  }
+  .login-dropdown-lg{
+    display: none !important;
+  }
+  .login-dropdown-sm{
+    display: block !important;
+  }
+  .search-lg{
+    display: none !important;
+  }
+  .alert-flash{
+    width: 20rem !important;
+    margin-left: 30px !important;
+  }
 }
 
 /* review form  */
-#liveAlertPlaceholder-reviewDelete{
-  display: none;
-}
-#liveAlertPlaceholder-listing{
-  display: none;
-  position: absolute;
-  width: 40rem;
-  left: -5px;
-  top: 600px;
-}
-.starability-result{
+
+.starability-result {
   transform: scale(0.5);
 }
 
@@ -122,10 +138,15 @@ footer {
   top: -10px;
   margin-right: -50px;
 }
-.profile-pic{
+.profile-pic {
   width: 30px;
 }
 .review-date {
-  font-size: 13px; 
-  color: #888; 
+  font-size: 13px;
+  color: #888;
+}
+
+/* Delete listing modal  */
+.modal {
+  backdrop-filter: blur(3px);
 }

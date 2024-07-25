@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
   <style>
     .dropdown {
       border: 0.1px solid rgb(35, 34, 34);
       border-radius: 15px;
       margin-right: 40px;
     }
+
     .dropdown-toggler-icon {
       height: 15px;
       margin-right: 10px;
     }
+
     /* Center the search form */
     .navbar .centered-search {
       width: 500px;
@@ -25,6 +29,7 @@
   </style>
   <title>Document</title>
 </head>
+
 <body>
   <nav class="navbar navbar-expand-md bg-body-tertiary sticky-top ">
     <div class="container-fluid">
@@ -40,47 +45,78 @@
             <a class="nav-link active" href="/listings">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/listings/new">Rent your home</a>
+            <a class="nav-link" href="/listings/new">Rent your property</a>
           </li>
+
+          <div class=" login-dropdown-sm" style="display: none;">
+            <% if(!userInfo){ %>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">SignUp</a>
+              </li>
+
+              <% } else { %>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">My Account</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                <% } %>
+
+          </div>
         </ul>
-        
+
         <!-- Centered Search Form -->
-        <form class="d-flex centered-search">
-          <input class="form-control me-2" type="search" placeholder="Search" />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+         <div class="search-lg">
+           <form class="d-flex centered-search ">
+             <input class="form-control me-2" type="search" placeholder="Search destination" />
+             <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
 
         <!-- Dropdown aligned to the right -->
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
+        <ul class="navbar-nav login-dropdown-lg">
+          <li class="nav-item dropdown justify-content-between">
             <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
               <span class="navbar-toggler-icon dropdown-toggler-icon"></span>
-              <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRTIFCbZa_AyogJ4j9BGwr9rso_Db1_lbe4z3KlkDlf22ByWJmN" alt="userImage" height="30px">
+              <img
+                src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRTIFCbZa_AyogJ4j9BGwr9rso_Db1_lbe4z3KlkDlf22ByWJmN"
+                alt="userImage" height="30px">
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-              
+
               <% if(!userInfo){ %>
                 <li><a class="dropdown-item" href="/login">Login</a></li>
                 <li><a class="dropdown-item" href="/signup">SignUp</a></li>
-                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
                 <li><a class="dropdown-item" href="/listings/new">Rent You Home</a></li>
-                <li><a class="dropdown-item" href="#">Help Centre</a></li>            
+                <li><a class="dropdown-item" href="#">Help Centre</a></li>
                 <% } else { %>
                   <li><a class="dropdown-item" href="#">Account</a></li>
                   <li><a class="dropdown-item" href="/listings/new">Rent You Home</a></li>
-                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
                   <li><a class="dropdown-item" href="#">Help Centre</a></li>
                   <li><a class="dropdown-item" href="/logout">Logout</a></li>
                   <% } %>
-                  
+
             </ul>
           </li>
         </ul>
-
       </div>
+
     </div>
   </nav>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
