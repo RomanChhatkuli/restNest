@@ -1,24 +1,81 @@
 <% layout('/layouts/boilerplate') -%>
-<body>
-  <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 mb-5">
-    <% for(listing of allListing){ %>
-    <a href="/listings/<%= listing._id %>">
-      <div class="card col index-card" style="width: 20rem">
-        <img
-          src="<%= listing.image.url %>"
-          class="card-img-top"
-          alt="listing-img"
-        />
-        <div class="card-img-overlay"></div>
-        <div class="card-body">
-          <p class="card-text">
-            <b><%= listing.title %></b> <br />
-            Rs. <%= listing.price.toLocaleString("en-NP") %><br>
-            <%= listing.location %>, <%= listing.country %>
-          </p>
-        </div>
-      </div>
-    </a>
-    <% } %>
-  </div>
-</body>
+
+  <style>
+    .swiper {
+      width: 25rem;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+    }
+
+    .swiper-slide img {
+      display: block;
+      /* width: 100%; */
+    }
+    @media (max-width: 600px) {
+      .swiper{
+        width: 23rem;
+      }
+    }
+  </style>
+
+  <body>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 mb-5">
+      <% for(let listing of allListing) { %>
+        <a href="/listings/<%= listing._id %>">
+          <div class="card col index-card" style="width: 20rem">
+
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <% listing.image.forEach(e=> { %>
+                  <div class="swiper-slide">
+                    <img src="<%= e.url %>" class="card-img-top" alt="<%= e.filename %>" />
+                  </div>
+                  <% }) %>
+              </div>
+
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-next swiper-button"></div>
+              <div class="swiper-button-prev swiper-button"></div>
+            </div>
+
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+              <p class="card-text">
+                <b>
+                  <%= listing.title %>
+                </b><br />
+                Rs. <%= listing.price.toLocaleString("en-NP") %><br>
+                  <%= listing.location %>, <%= listing.country %>
+              </p>
+            </div>
+          </div>
+        </a>
+        <% } %>
+    </div>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        var swiper = new Swiper(".mySwiper", {
+          spaceBetween: 30,
+          effect: "fade",
+          centeredSlides: true,
+          autoplay: {
+            delay: 4500,
+            disableOnInteraction: false,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            dynamicBullets: true,
+          },
+        });
+      });
+    </script>
+  </body>

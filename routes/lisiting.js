@@ -10,14 +10,14 @@ const {index, newForm, createListing, showListing, editListing, deleteListing, e
 router  
   .route("/")
   .get(wrapAsync(index))
-  .post(isLoggedIn, upload.single('image'), wrapAsync(createListing));
+  .post(isLoggedIn, upload.array('image',20), wrapAsync(createListing));
 
 router.get("/new", isLoggedIn, newForm);
 
 router
   .route("/:id")
   .get(wrapAsync(showListing))
-  .put(isLoggedIn, isOwner, upload.single('image'), validateListing, wrapAsync(editListing))
+  .put(isLoggedIn, isOwner, upload.array('image',20), validateListing, wrapAsync(editListing))
   .delete(isLoggedIn, isOwner, wrapAsync(deleteListing));
 
 router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(editForm));

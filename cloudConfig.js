@@ -7,9 +7,10 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET
 });
 
+
 const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
+  cloudinary: cloudinary,
+  params: {
       folder: 'restNest',
       allowedFormats: ["png", "jpg","jpeg"]
     },

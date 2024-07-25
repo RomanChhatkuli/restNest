@@ -22,11 +22,24 @@ module.exports.showListing = async (req, res) => {
 }
 
 module.exports.createListing = async (req, res, next) => {
-  let url = req.file.path;
-  let filename = req.file.filename;
+
+  if (!req.files || req.files.length === 0) {
+    req.flash("error", "No files uploaded.");
+    return res.redirect("/listings");
+  }
   let listing = req.body;
   listing.owner = req.user._id;
-  listing.image = {url, filename};
+
+  let images = []
+    req.files.forEach(file => {
+      images.push({
+        url: file.path,
+        filename: file.filename
+      });
+    });
+
+
+  listing.image = images;
  await new Listing(listing).save();
   req.flash("success","Listing Created Successfully.")
   res.redirect("/listings");
@@ -44,11 +57,16 @@ module.exports.editForm = async (req, res) => {
 module.exports.editListing = async (req, res) => {
   let { id } = req.params;
   let listing = await Listing.findByIdAndUpdate(id, req.body, { new: true })
-
-  if(req.file){
-    let url = req.file.path;
-    let filename = req.file.filename;
-    listing.image = { url, filename };
+console.log(req.files)
+  if(req.files.length){
+    let images = []
+    req.files.forEach(file => {
+      images.push({
+        url: file.path,
+        filename: file.filename
+      });
+    });
+    listing.image = images;
     await listing.save();
   }
   

@@ -60,6 +60,10 @@ footer {
   opacity: 0.2;
   background-color: #ffffff;
 }
+#profile-pic {
+  height: 30px !important;
+  margin-top: 0px;
+}
 
 /* Show page  */
 .btns {
@@ -150,3 +154,4 @@ footer {
 .modal {
   backdrop-filter: blur(3px);
 }
+

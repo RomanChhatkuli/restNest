@@ -1,12 +1,50 @@
 <% layout('/layouts/boilerplate') -%>
+
+<style>
+  .swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 500px;
+    height: 300px;
+  }
+
+  .swiper-slide img {
+    display: block;
+    height: 20rem;
+    margin-bottom: 20px;
+  }
+</style>
+
+
   <div class="row justify-content-center show-ejs">
     <div class="col-12 col-md-6">
       <div class="card mt-4 mb-5 show-page-card">
         <h2>
           <%= listing.title %>
         </h2>
-        <img src="<%= listing.image.url %>" class="card-img-top img-fluid d-block mx-auto" alt="home-image"
-          style="height: 30rem" />
+
+
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <% listing.image.forEach(e=> { %>
+              <div class="swiper-slide">
+                <img src="<%= e.url %>" class="card-img-top img-fluid d-block mx-auto" alt="<%= e.filename %>" />
+              </div>
+              <% }) %>
+          </div>
+
+          <div class="swiper-pagination"></div>
+        </div>
+
+
+
+
         <div class="card-body">
           <p class="card-text">
             Owner: <%= listing.owner.username %>
@@ -141,3 +179,28 @@
       </div>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        autoplay: {
+            delay: 4500,
+            disableOnInteraction: false,
+          },
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },
+      });
+    });
+  </script>
