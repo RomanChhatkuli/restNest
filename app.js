@@ -9,6 +9,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const expressError = require("./utils/expressError.js");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const listingRouter = require("./routes/lisiting.js");
 const reviewRouter = require("./routes/review.js");
@@ -16,8 +17,21 @@ const userRouter = require("./routes/user.js");
 const passport = require("passport")
 const LocalStrategy = require("passport-local")
 const User = require("./Model/user.js")
+const dbUrl = process.env.ATLASDB_URL;
+
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto: {
+    secret: "mySecretCode",
+  },
+  touchAfter: 24*60*60
+})
+store.on("err",()=>{
+  console.log("Error in mongo session store",err)
+})
 
 const sessionOption = {
+  store,
   secret: "mySecretCode",
   resave: false,
   saveUninitialized: true,
@@ -27,6 +41,7 @@ const sessionOption = {
     httpOnly: true
   }
 }
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -46,7 +61,6 @@ passport.deserializeUser(User.deserializeUser());
 
 // Connecting to database
 // const dbUrl = "mongodb://127.0.0.1:27017/restNest";
-const dbUrl = process.env.ATLASDB_URL;
 async function main() {
   await mongoose.connect(dbUrl);
 }
