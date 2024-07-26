@@ -12,11 +12,55 @@
 
     .swiper-slide img {
       display: block;
-      /* width: 100%; */
     }
+
+    .card-text {
+      margin-bottom: -4px !important;
+    }
+
+    .avgRating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      position: absolute;
+      left: 350px;
+      margin-bottom: -14px !important;
+    }
+
+    .rating-text {
+      display: flex;
+    }
+
+    .swiper-button {
+      transform: scale(0.6);
+      color: black;
+    }
+
+    .swiper-pagination-bullet {
+      background: rgb(176, 174, 174) !important;
+      opacity: 0.7;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: white !important;
+      opacity: 1;
+    }
+
     @media (max-width: 600px) {
-      .swiper{
+      .swiper {
         width: 23rem;
+      }
+
+      .avgRating {
+        left: 300px !important;
+      }
+
+      .card-body {
+        margin-top: -40px !important;
+      }
+
+      .swiper-pagination {
+        margin-bottom: 50px !important;
       }
     }
   </style>
@@ -43,13 +87,38 @@
 
             <div class="card-img-overlay"></div>
             <div class="card-body">
-              <p class="card-text">
+
+              <div class="card-text rating-text" style="font-size: 15px;">
                 <b>
-                  <%= listing.title %>
-                </b><br />
-                Rs. <%= listing.price.toLocaleString("en-NP") %><br>
                   <%= listing.location %>, <%= listing.country %>
+                </b>
+
+                <p class="avgRating">
+                  <% if(listing.reviews && listing.reviews.length){ %>
+                    <% const totalReviews=listing.reviews.length %>
+                      <% const sumOfRatings=listing.reviews.reduce((sum, review)=> sum + review.rating, 0); %>
+                        <% const averageRating=(sumOfRatings/totalReviews).toFixed(2) %>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"
+                            role="presentation" focusable="false"
+                            style="display: block; height: 16px; width: 16px; fill: currentcolor;">
+                            <path fill-rule="evenodd"
+                              d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
+                            </path>
+                          </svg>
+                          <%= averageRating %>
+                            <% } %>
+                </p>
+              </div>
+
+              <p class="card-text" style="font-size: 15px;">
+                Hosted by <%= listing.owner.username %>
               </p>
+
+              <p class="card-text" style="font-size: 16px;">
+                <b>Rs. <%= listing.price.toLocaleString("en-NP") %></b> night
+              </p>
+
+
             </div>
           </div>
         </a>

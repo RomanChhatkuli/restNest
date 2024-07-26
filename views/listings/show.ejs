@@ -1,27 +1,46 @@
 <% layout('/layouts/boilerplate') -%>
 
-<style>
-  .swiper {
-    width: 100%;
-    height: 30rem;
-    padding-top: 10px;
-    padding-bottom: 50px;
-    margin-bottom: 30px;
-  }
+  <style>
+    .swiper {
+      width: 100%;
+      height: 30rem;
+      padding-top: 10px;
+      padding-bottom: 50px;
+      margin-bottom: 30px;
+    }
 
-  .swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 500px;
-    height: 300px;
-  }
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 500px;
+      height: 300px;
+    }
 
-  .swiper-slide img {
-    display: block;
-    height: 27rem;
-    margin-bottom: 20px;
-  }
-</style>
+    .swiper-slide img {
+      display: block;
+      height: 27rem;
+      margin-bottom: 20px;
+    }
+
+    .avgRating {
+      display: flex;
+      align-items: center;
+    }
+
+    .swiper-pagination-bullet {
+      background: rgb(176, 174, 174) !important;
+      opacity: 0.7;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: white !important;
+      opacity: 1;
+    }
+
+    .swiper-pagination {
+      margin-bottom: 35px !important;
+    }
+  </style>
 
 
   <div class="row justify-content-center show-ejs">
@@ -49,13 +68,47 @@
 
         <div class="card-body">
           <p class="card-text">
-            Owner: <%= listing.owner.username %>
+            <b> Hosted By: <%= listing.owner.username %> </b>
           </p>
           <p class="card-text">
             <%= listing.description %> <br />
-              Rs. <%= listing.price.toLocaleString("en-NP") %> <br />
-                <%= listing.location %>, <%= listing.country %> <br />
           </p>
+          <p class="card-text">
+            Rs. <%= listing.price.toLocaleString("en-NP") %> /night <br />
+          </p>
+          <p class="card-text">
+            <%= listing.location %>, <%= listing.country %> <br />
+          </p>
+
+          <p class="card-text avgRating">
+            <% if(listing.reviews && listing.reviews.length){ %>
+              <% const totalReviews=listing.reviews.length %>
+                <% const sumOfRatings=listing.reviews.reduce((sum, review)=> sum + review.rating, 0); %>
+                  <% const averageRating=(sumOfRatings/totalReviews).toFixed(2) %>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation"
+                      focusable="false" style="display: block; height: 16px; width: 16px; fill: currentcolor;">
+                      <path fill-rule="evenodd"
+                        d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
+                      </path>
+                    </svg>
+                    <b>
+                      <%= averageRating %> .
+                        <u style="margin-left: 5px;">
+
+                          <%= totalReviews %>
+                            <% if(totalReviews> 1){ %>
+                              Reviews
+                              <% } else{ %>
+                                Review
+                                <% } %>
+                        </u>
+                    </b>
+                    <% } %>
+
+          </p>
+
+
+
         </div>
 
 
@@ -189,9 +242,9 @@
         grabCursor: true,
         centeredSlides: true,
         autoplay: {
-            delay: 4500,
-            disableOnInteraction: false,
-          },
+          delay: 4500,
+          disableOnInteraction: false,
+        },
         slidesPerView: "auto",
         coverflowEffect: {
           rotate: 50,

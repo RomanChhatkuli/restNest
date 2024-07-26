@@ -18,6 +18,7 @@ const passport = require("passport")
 const LocalStrategy = require("passport-local")
 const User = require("./Model/user.js")
 const dbUrl = process.env.ATLASDB_URL;
+// const dbUrl = "mongodb://127.0.0.1:27017/restNest";
 
 const store = MongoStore.create({
   mongoUrl: dbUrl,
@@ -60,7 +61,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Connecting to database
-// const dbUrl = "mongodb://127.0.0.1:27017/restNest";
 async function main() {
   await mongoose.connect(dbUrl);
 }
