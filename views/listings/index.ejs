@@ -75,7 +75,7 @@
               <div class="swiper-wrapper">
                 <% listing.image.forEach(e=> { %>
                   <div class="swiper-slide">
-                    <img src="<%= e.url %>" class="card-img-top" alt="<%= e.filename %>" />
+                    <img src="<%= e.url %>" class="card-img-top" alt="<%= e.filename %>" loading="lazy"/>
                   </div>
                   <% }) %>
               </div>
