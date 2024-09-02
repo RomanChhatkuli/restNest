@@ -2,15 +2,21 @@
     "version": 2,
     "builds": [
       {
-        "src": "server/app.js",
+        "src": "app.js",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/server/app.js"
+        "dest": "/app.js"
       }
-    ]
+    ],
+    "env": {
+      "MONGODB_URI": "@mongodb_uri",
+      "CLOUDINARY_CLOUD_NAME": "@cloudinary_cloud_name",
+      "CLOUDINARY_API_KEY": "@cloudinary_api_key",
+      "CLOUDINARY_API_SECRET": "@cloudinary_api_secret"
+    }
   }
   
